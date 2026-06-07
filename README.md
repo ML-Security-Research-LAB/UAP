@@ -1,3 +1,5 @@
+# UAP (WACV 2026 oral)
+
 Clean, minimal codebase for training and evaluating SSFL (Semi-Supervised Federated Learning) and UAP methods.
 
 ## Directory Structure
