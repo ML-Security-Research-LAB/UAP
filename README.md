@@ -1,9 +1,7 @@
 # UAP (WACV 2026 oral)
-
-Clean, minimal codebase for training and evaluating SSFL (Semi-Supervised Federated Learning) and UAP methods.
+Code for SSFL and UAP
 
 ## Directory Structure
-
 ```
 UAP/
 ├── train.py              # Main training script
@@ -52,30 +50,15 @@ python evaluate.py --dataset PACS --test_env 0 --method SSFL --experiment_path d
 python evaluate.py --dataset PACS --test_env 0 --method UAP --experiment_path data_final --device cuda:0
 ```
 
-## Key Features
-
-### SSFL (Semi-Supervised Federated Learning)
-- Server trains on labeled data from one domain
-- Clients train on unlabeled data from other domains
-- Batch normalization statistics are shared (privacy-preserving)
-- Inspired by SemiFL
-
-### UAP (Unified Adversarial Perturbation)
-- Extends SSFL with domain-invariant feature learning
-- Uses adversarial training for better generalization
-
 ## Configuration
 
-### New Way (Recommended)
+### Recommended
 ```python
 from config import get_args
 args = get_args()
 ```
 
-```
-
 ## Important Arguments
-
 - `--dataset`: Dataset name (PACS, VLCS, OfficeHome)
 - `--test_env`: Target test domain (0-3 for PACS)
 - `--server_domain`: Server labeled domain (0-3)
@@ -89,11 +72,31 @@ args = get_args()
 ## Datasets
 
 Required datasets:
-- PACS: 4 domains (art_painting, cartoon, photo, sketch)
-- VLCS: 4 domains
-- OfficeHome: 4 domains
 
-Place datasets in `./data/` directory.
+- **PACS**: 4 domains (art_painting, cartoon, photo, sketch)
+- **VLCS**: 4 domains (Caltech101, LabelMe, SUN09, VOC2007)
+- **OfficeHome**: 4 domains (Art, Clipart, Product, Real_World)
+
+Place datasets in `./data/` directory:
+
+```
+data/
+├── PACS/
+│   ├── art_painting/
+│   ├── cartoon/
+│   ├── photo/
+│   └── sketch/
+├── VLCS/
+│   ├── Caltech101/
+│   ├── LabelMe/
+│   ├── SUN09/
+│   └── VOC2007/
+└── officehome/
+    ├── Art/
+    ├── Clipart/
+    ├── Product/
+    └── Real_World/
+```
 
 ## Results
 
@@ -107,7 +110,6 @@ Each checkpoint includes:
 - `target_accs.csv`: Target domain accuracies per round
 
 ## Documentation
-
 - `BATCHNORM_STATS.md`: Explains batch normalization statistics sharing and privacy preservation
 
 ## Module Dependencies
@@ -131,4 +133,3 @@ evaluate.py
   ├── datasets.py
   └── losses/
 ```
-
